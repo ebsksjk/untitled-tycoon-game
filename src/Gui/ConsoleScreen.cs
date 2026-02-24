@@ -6,11 +6,11 @@ using UntitledTycoonGame.Gui.Components;
 namespace UntitledTycoonGame.Gui;
 
 public class ConsoleScreen {
-    private Component component;
+    private List<Component> components;
     private long renderTime = -1;
 
-    public ConsoleScreen(Component component) {
-        this.component = component;
+    public ConsoleScreen(List<Component> components) {
+        this.components = components;
     }
     
     public void Render() {
@@ -18,7 +18,10 @@ public class ConsoleScreen {
         sw.Start();
         
         ConsoleBuffer buffer = new ConsoleBuffer(Console.BufferWidth, Console.BufferHeight);
-        component.Render(buffer);
+        foreach(Component comp in components){
+            comp.Render(buffer);
+        }
+
         
         StringBuilder sb = new();
         Color? lastFg = null;
@@ -47,6 +50,10 @@ public class ConsoleScreen {
     }
 
     public void HandleKey(ConsoleKeyInfo keyInfo) {
-        component.HandleKey(keyInfo);
+        //TODO: handle key per component seperately?
+        foreach(Component comp in components){
+            comp.HandleKey(keyInfo);
+        }
+
     }
 }
