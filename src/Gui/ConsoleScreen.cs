@@ -5,15 +5,10 @@ using UntitledTycoonGame.Gui.Components;
 
 namespace UntitledTycoonGame.Gui;
 
-public class ConsoleScreen {
+public class ConsoleScreen(List<Component> components) {
     private ConsoleBuffer lastBuffer = new(0, 0);
-    private List<Component> components;
     private long renderTime = -1;
 
-    public ConsoleScreen(List<Component> components) {
-        this.components = components;
-    }
-    
     public void Render() {
         Stopwatch sw = new();
         sw.Start();
@@ -67,5 +62,9 @@ public class ConsoleScreen {
             comp.HandleKey(keyInfo);
         }
 
+    }
+
+    public void ResetBuffer() {
+        lastBuffer = new(0, 0);
     }
 }

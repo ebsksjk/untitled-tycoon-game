@@ -3,9 +3,9 @@ using System.Drawing;
 namespace UntitledTycoonGame.Gui;
 
 public class ConsoleBuffer {
-    public readonly int Width;
-    public readonly int Height;
-    public readonly CellData[,] Data;
+    public int Width { get; }
+    public int Height { get; }
+    public CellData[,] Data { get; }
     
     public ConsoleBuffer(int width, int height) {
         Width = width;
@@ -19,20 +19,44 @@ public class ConsoleBuffer {
         }
     }
 
-    public void FillRectangle(Color color, Point pos, Size size, bool background) {
-        for (int y = pos.Y; y < pos.Y + size.Height && y < Height; y++) {
-            for (int x = pos.X; x < pos.X + size.Width && x < Width; x++) {
-                if (background) 
-                    Data[x, y].Background = color;
-                else
-                    Data[x, y].Foreground = color;
-            }
-        }
+    public void DrawChar(char c, Point pos) {
+        if (IsInBounds(pos)) Data[pos.X, pos.Y].Char = c;
     }
     
     public void DrawText(string text, Point pos) {
         for (int x = pos.X; x - pos.X < text.Length && x < Width; x++) {
-            Data[x, pos.Y].Char = text[x - pos.X];
+            if (IsInBounds(x, pos.Y)) Data[x, pos.Y].Char = text[x - pos.X];
         }
+    }
+
+    public void DrawRectangle(Color color, Point pos, Size size) {
+        DrawRectangle(color, pos, new Point(pos.X + size.Width - 1, pos.Y + size.Height - 1));
+    }
+
+    public void DrawRectangle(Color color, Point topLeft, Point bottomRight) {
+        FillRectangle(color, topLeft, new Point(bottomRight.X, topLeft.Y));             // Top line
+        FillRectangle(color, topLeft, new Point(topLeft.X + 1, bottomRight.Y));         // Left line
+        FillRectangle(color, new Point(bottomRight.X - 1, topLeft.Y), bottomRight);     // Right line
+        FillRectangle(color, new Point(topLeft.X, bottomRight.Y), bottomRight);         // Bottom line
+    }
+
+    public void FillRectangle(Color color, Point pos, Size size) {
+        FillRectangle(color, pos, new Point(pos.X + size.Width - 1, pos.Y + size.Height - 1));
+    }
+
+    public void FillRectangle(Color color, Point topLeft, Point bottomRight) {
+        for (int y = topLeft.Y; y <= bottomRight.Y && y < Height; y++) {
+            for (int x = topLeft.X; x <= bottomRight.X && x < Width; x++) {
+                if (IsInBounds(x, y)) Data[x, y].Background = color;
+            }
+        }
+    }
+
+    private bool IsInBounds(Point pos) {
+        return IsInBounds(pos.X, pos.Y);
+    }
+
+    private bool IsInBounds(int x, int y) {
+        return x >= 0 && x < Width && y >= 0 && y < Height;
     }
 }

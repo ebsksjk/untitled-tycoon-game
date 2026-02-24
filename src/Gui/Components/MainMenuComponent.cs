@@ -27,10 +27,7 @@ public class MainMenuComponent : Component {
     private int selectedIndex = 0;
     
     public override void Render(ConsoleBuffer buffer) {
-        buffer.FillRectangle(Color.White, new(2, 1), new(buffer.Width - 4, 1), true); // Top stripe
-        buffer.FillRectangle(Color.White, new(2, buffer.Height - 2), new(buffer.Width - 4, 1), true); // Bottom stripe
-        buffer.FillRectangle(Color.White, new(2, 2), new(2, buffer.Height - 4), true); // Left stripe
-        buffer.FillRectangle(Color.White, new(buffer.Width - 4, 2), new(2, buffer.Height - 4), true); // Right stripe
+        buffer.DrawRectangle(Color.White, new(2, 1), new Point(buffer.Width - 3, buffer.Height - 2));
 
         gameTitleText.Position = new(buffer.Width / 2 - 25, 8);
         playText.Position = new(buffer.Width / 2 - 15, 15);
@@ -64,22 +61,14 @@ public class MainMenuComponent : Component {
     }
     
     private void UpdateColors() {
+        playText.BackgroundColor = Color.DarkBlue;
+        settingsText.BackgroundColor = Color.DarkBlue;
+        quitText.BackgroundColor = Color.DarkBlue;
+        
         switch (selectedIndex) {
-            case 0:
-                playText.BackgroundColor = Color.Blue;
-                settingsText.BackgroundColor = Color.DarkBlue;
-                quitText.BackgroundColor = Color.DarkBlue;
-                break;
-            case 1:
-                playText.BackgroundColor = Color.DarkBlue;
-                settingsText.BackgroundColor = Color.Blue;
-                quitText.BackgroundColor = Color.DarkBlue;
-                break;
-            case 2:
-                playText.BackgroundColor = Color.DarkBlue;
-                settingsText.BackgroundColor = Color.DarkBlue;
-                quitText.BackgroundColor = Color.Blue;
-                break;
+            case 0: playText.BackgroundColor = Color.Blue; break;
+            case 1: settingsText.BackgroundColor = Color.Blue; break;
+            case 2: quitText.BackgroundColor = Color.Blue; break;
         }
     }
 }
