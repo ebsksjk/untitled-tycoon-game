@@ -34,9 +34,7 @@ public class ConsoleScreen {
             for (int x = 0; x < buffer.Width; x++) {
                 // Check if this pixel/char has changed at all from last frame
                 if (lastBuffer.Width == buffer.Width && lastBuffer.Height == buffer.Height
-                    && lastBuffer.FgColorData[x, y] == buffer.FgColorData[x, y]
-                    && lastBuffer.BgColorData[x, y] == buffer.BgColorData[x, y]
-                    && lastBuffer.CharData[x, y] == buffer.CharData[x, y]) {
+                    && lastBuffer.Data[x, y] == buffer.Data[x, y]) {
                     ansiJumpRequired = true;
                     continue;
                 }
@@ -45,14 +43,14 @@ public class ConsoleScreen {
                     sb.Append($"\e[{y + 1};{x + 1}H");
                     ansiJumpRequired = false;
                 }
-                Color fg = buffer.FgColorData[x, y];
-                Color bg = buffer.BgColorData[x, y];
+                Color fg = buffer.Data[x, y].Foreground;
+                Color bg = buffer.Data[x, y].Background;
                 if (fg != lastFg || bg != lastBg) {
                     lastFg = fg;
                     lastBg = bg;
                     sb.Append($"\e[38;2;{fg.R};{fg.G};{fg.B};48;2;{bg.R};{bg.G};{bg.B}m");
                 }
-                sb.Append(buffer.CharData[x, y]);
+                sb.Append(buffer.Data[x, y].Char);
             }
         }
         
