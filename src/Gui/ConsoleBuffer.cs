@@ -19,7 +19,7 @@ public class ConsoleBuffer {
         }
     }
 
-    public void FillColor(Color color, Point pos, Size size, bool background) {
+    public void FillRectangle(Color color, Point pos, Size size, bool background) {
         for (int y = pos.Y; y < pos.Y + size.Height && y < Height; y++) {
             for (int x = pos.X; x < pos.X + size.Width && x < Width; x++) {
                 if (background) 
