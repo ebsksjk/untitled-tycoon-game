@@ -2,18 +2,24 @@
 using UntitledTycoonGame.Gui;
 using UntitledTycoonGame.Gui.Components;
 using Timer = System.Timers.Timer;
+using UntitledTycoonGame.Logic;
 
 namespace UntitledTycoonGame;
 
 public static class Program {
 	public static void Main() {
 		Console.CursorVisible = false;
-		
-		ConsoleScreen screen = new(new MainMenuComponent());
+
+		List<Component> renderComponents = new();
+
+		renderComponents.Add(new ValueBar(10, 10, 15, 5, "Test!"));
+		renderComponents.Add(new MainMenuComponent());
+
+		ConsoleScreen screen = new(renderComponents);
 		Timer timer = new Timer();
 		timer.Interval = 50;
 		timer.AutoReset = true;
-		timer.Elapsed += (sender, args) => screen.Render();
+		timer.Elapsed += (sender, args) => {screen.Render();};
 		timer.Start();
 
 		while (true) {
