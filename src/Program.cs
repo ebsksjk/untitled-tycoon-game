@@ -27,9 +27,8 @@ public static class Program {
 			switch (key.Key) {
 				case ConsoleKey.F3:
 					timer.Stop();
-					Console.Clear();
 					AnsiTest.Run();
-					Console.ReadKey();
+					screen.ResetBuffer();
 					timer.Start();
 					break;
 				default:
