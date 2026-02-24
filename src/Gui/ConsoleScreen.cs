@@ -45,4 +45,8 @@ public class ConsoleScreen {
         sw.Stop();
         renderTime = sw.ElapsedMilliseconds;
     }
+
+    public void HandleKey(ConsoleKeyInfo keyInfo) {
+        component.HandleKey(keyInfo);
+    }
 }

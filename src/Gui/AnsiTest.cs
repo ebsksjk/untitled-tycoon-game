@@ -39,7 +39,8 @@ public static class AnsiTest {
             }
             sb.Append("\e[m\n");
         }
-        
+
+        sb.Append("\nPress any key to return to previous menu");
         Console.WriteLine(sb.ToString());
     }
 }

@@ -9,4 +9,5 @@ public abstract class Component {
     public Color BackgroundColor { get; set; }
 
     public abstract void Render(ConsoleBuffer buffer);
+    public abstract void HandleKey(ConsoleKeyInfo key);
 }

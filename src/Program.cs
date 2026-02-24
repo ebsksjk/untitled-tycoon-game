@@ -15,6 +15,21 @@ public static class Program {
 		timer.AutoReset = true;
 		timer.Elapsed += (sender, args) => screen.Render();
 		timer.Start();
-		Console.ReadKey();
+
+		while (true) {
+			var key = Console.ReadKey();
+			switch (key.Key) {
+				case ConsoleKey.F3:
+					timer.Stop();
+					Console.Clear();
+					AnsiTest.Run();
+					Console.ReadKey();
+					timer.Start();
+					break;
+				default:
+					screen.HandleKey(key);
+					break;
+			}
+		}
 	}
 }
