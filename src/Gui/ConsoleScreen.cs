@@ -6,6 +6,7 @@ using UntitledTycoonGame.Gui.Components;
 namespace UntitledTycoonGame.Gui;
 
 public class ConsoleScreen {
+    private ConsoleBuffer lastBuffer = new(0, 0);
     private List<Component> components;
     private long renderTime = -1;
 
@@ -18,6 +19,7 @@ public class ConsoleScreen {
         sw.Start();
         
         ConsoleBuffer buffer = new ConsoleBuffer(Console.BufferWidth, Console.BufferHeight);
+        buffer.DrawText($"ms/frame: {renderTime}", new(0, 0));
         foreach(Component comp in components){
             comp.Render(buffer);
         }
@@ -26,24 +28,36 @@ public class ConsoleScreen {
         StringBuilder sb = new();
         Color? lastFg = null;
         Color? lastBg = null;
-        
+        bool ansiJumpRequired = true;
         for (int y = 0; y < buffer.Height; y++) {
+            ansiJumpRequired = true;
             for (int x = 0; x < buffer.Width; x++) {
+                // Check if this pixel/char has changed at all from last frame
+                if (lastBuffer.Width == buffer.Width && lastBuffer.Height == buffer.Height
+                    && lastBuffer.FgColorData[x, y] == buffer.FgColorData[x, y]
+                    && lastBuffer.BgColorData[x, y] == buffer.BgColorData[x, y]
+                    && lastBuffer.CharData[x, y] == buffer.CharData[x, y]) {
+                    ansiJumpRequired = true;
+                    continue;
+                }
+
+                if (ansiJumpRequired) {
+                    sb.Append($"\e[{y + 1};{x + 1}H");
+                    ansiJumpRequired = false;
+                }
                 Color fg = buffer.FgColorData[x, y];
                 Color bg = buffer.BgColorData[x, y];
-                if (fg != lastFg || bg != lastBg || x == 0) {
+                if (fg != lastFg || bg != lastBg) {
                     lastFg = fg;
                     lastBg = bg;
                     sb.Append($"\e[38;2;{fg.R};{fg.G};{fg.B};48;2;{bg.R};{bg.G};{bg.B}m");
                 }
                 sb.Append(buffer.CharData[x, y]);
             }
-            if (y < buffer.Height - 1) {
-                sb.Append("\e[m\n");
-            }
         }
         
-        Console.Clear();
+        lastBuffer = buffer;
+        
         Console.Write(sb.ToString());
         sw.Stop();
         renderTime = sw.ElapsedMilliseconds;

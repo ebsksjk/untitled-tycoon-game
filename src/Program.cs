@@ -17,7 +17,7 @@ public static class Program {
 
 		ConsoleScreen screen = new(renderComponents);
 		Timer timer = new Timer();
-		timer.Interval = 50;
+		timer.Interval = 100;
 		timer.AutoReset = true;
 		timer.Elapsed += (sender, args) => {screen.Render();};
 		timer.Start();
