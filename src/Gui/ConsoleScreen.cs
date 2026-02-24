@@ -1,15 +1,15 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Text;
-using UntitledTycoonGame.Gui.Component;
+using UntitledTycoonGame.Gui.Components;
 
 namespace UntitledTycoonGame.Gui;
 
 public class ConsoleScreen {
-    private Component.Component component;
+    private Component component;
     private long renderTime = -1;
 
-    public ConsoleScreen(Component.Component component) {
+    public ConsoleScreen(Component component) {
         this.component = component;
     }
     
