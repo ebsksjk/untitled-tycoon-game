@@ -2,22 +2,26 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using UntitledTycoonGame.Gui.Component;
+using UntitledTycoonGame.Gui.View;
 
 namespace UntitledTycoonGame.Gui;
 
-public class ConsoleRenderer(List<BaseComponent> components) {
+public class ConsoleRenderer {
+    public static readonly ConsoleRenderer Instance = new ConsoleRenderer();
+
+    public BaseComponent View { get; set; } = new MainMenuView();
     private ConsoleBuffer lastBuffer = new(0, 0);
     private long renderTime = -1;
+    
+    private ConsoleRenderer() {}
 
     public void Render() {
         Stopwatch sw = new();
         sw.Start();
         
         ConsoleBuffer buffer = new ConsoleBuffer(Console.BufferWidth, Console.BufferHeight);
-        buffer.DrawText($"ms/frame: {renderTime}", new(0, 0));
-        foreach(BaseComponent comp in components){
-            comp.Render(buffer);
-        }
+        //buffer.DrawText($"ms/frame: {renderTime}", new(0, 0));
+        View.Render(buffer);
 
         
         StringBuilder sb = new();
@@ -57,11 +61,7 @@ public class ConsoleRenderer(List<BaseComponent> components) {
     }
 
     public void HandleKey(ConsoleKeyInfo keyInfo) {
-        //TODO: handle key per component seperately?
-        foreach(BaseComponent comp in components){
-            comp.HandleKey(keyInfo);
-        }
-
+        View.HandleKey(keyInfo);
     }
 
     public void ResetBuffer() {

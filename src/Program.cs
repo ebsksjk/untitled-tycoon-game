@@ -10,16 +10,15 @@ public static class Program {
 	public static void Main() {
 		Console.CursorVisible = false;
 
-		List<BaseComponent> renderComponents = new();
+		// List<BaseComponent> renderComponents = new();
+		//
+		// renderComponents.Add(new ValueBar(10, 10, 15, 5, "Test!"));
+		// renderComponents.Add(new MainMenuView());
 
-		renderComponents.Add(new ValueBar(10, 10, 15, 5, "Test!"));
-		renderComponents.Add(new MainMenuView());
-
-		ConsoleRenderer renderer = new(renderComponents);
 		Timer timer = new Timer();
 		timer.Interval = 100;
 		timer.AutoReset = true;
-		timer.Elapsed += (sender, args) => {renderer.Render();};
+		timer.Elapsed += (sender, args) => {ConsoleRenderer.Instance.Render();};
 		timer.Start();
 
 		while (true) {
@@ -28,11 +27,11 @@ public static class Program {
 				case ConsoleKey.F3:
 					timer.Stop();
 					AnsiTest.Run();
-					renderer.ResetBuffer();
+					ConsoleRenderer.Instance.ResetBuffer();
 					timer.Start();
 					break;
 				default:
-					renderer.HandleKey(key);
+					ConsoleRenderer.Instance.HandleKey(key);
 					break;
 			}
 		}
