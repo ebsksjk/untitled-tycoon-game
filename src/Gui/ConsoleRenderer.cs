@@ -1,11 +1,11 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Text;
-using UntitledTycoonGame.Gui.Components;
+using UntitledTycoonGame.Gui.Component;
 
 namespace UntitledTycoonGame.Gui;
 
-public class ConsoleScreen(List<Component> components) {
+public class ConsoleRenderer(List<BaseComponent> components) {
     private ConsoleBuffer lastBuffer = new(0, 0);
     private long renderTime = -1;
 
@@ -15,7 +15,7 @@ public class ConsoleScreen(List<Component> components) {
         
         ConsoleBuffer buffer = new ConsoleBuffer(Console.BufferWidth, Console.BufferHeight);
         buffer.DrawText($"ms/frame: {renderTime}", new(0, 0));
-        foreach(Component comp in components){
+        foreach(BaseComponent comp in components){
             comp.Render(buffer);
         }
 
@@ -58,7 +58,7 @@ public class ConsoleScreen(List<Component> components) {
 
     public void HandleKey(ConsoleKeyInfo keyInfo) {
         //TODO: handle key per component seperately?
-        foreach(Component comp in components){
+        foreach(BaseComponent comp in components){
             comp.HandleKey(keyInfo);
         }
 

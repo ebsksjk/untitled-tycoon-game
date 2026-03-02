@@ -1,4 +1,4 @@
-namespace UntitledTycoonGame.Gui.Components;
+namespace UntitledTycoonGame.Gui.Component;
 
 public enum Alignment {
     TopLeft = 0,

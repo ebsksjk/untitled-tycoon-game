@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using UntitledTycoonGame.Gui;
-using UntitledTycoonGame.Gui.Components;
+using UntitledTycoonGame.Gui.Component;
+using UntitledTycoonGame.Gui.View;
 using Timer = System.Timers.Timer;
 using UntitledTycoonGame.Logic;
 
@@ -10,16 +11,16 @@ public static class Program {
 	public static void Main() {
 		Console.CursorVisible = false;
 
-		List<Component> renderComponents = new();
+		List<BaseComponent> renderComponents = new();
 
 		renderComponents.Add(new ValueBar(10, 10, 15, 5, "Test!"));
-		renderComponents.Add(new MainMenuComponent());
+		renderComponents.Add(new MainMenuView());
 
-		ConsoleScreen screen = new(renderComponents);
+		ConsoleRenderer renderer = new(renderComponents);
 		Timer timer = new Timer();
 		timer.Interval = 100;
 		timer.AutoReset = true;
-		timer.Elapsed += (sender, args) => {screen.Render();};
+		timer.Elapsed += (sender, args) => {renderer.Render();};
 		timer.Start();
 
 		while (true) {
@@ -28,11 +29,11 @@ public static class Program {
 				case ConsoleKey.F3:
 					timer.Stop();
 					AnsiTest.Run();
-					screen.ResetBuffer();
+					renderer.ResetBuffer();
 					timer.Start();
 					break;
 				default:
-					screen.HandleKey(key);
+					renderer.HandleKey(key);
 					break;
 			}
 		}

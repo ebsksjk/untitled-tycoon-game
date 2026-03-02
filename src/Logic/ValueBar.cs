@@ -1,10 +1,10 @@
-using UntitledTycoonGame.Gui.Components;
 using UntitledTycoonGame.Gui;
 using System.Drawing;
+using UntitledTycoonGame.Gui.Component;
 
 namespace UntitledTycoonGame.Logic;
 
-public class ValueBar : Component {
+public class ValueBar : BaseComponent {
 	//a value bar (box) could look like this:
 	//o============o
 	//| Test Value |
