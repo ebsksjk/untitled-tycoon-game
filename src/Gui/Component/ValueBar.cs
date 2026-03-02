@@ -2,7 +2,7 @@ using UntitledTycoonGame.Gui;
 using System.Drawing;
 using UntitledTycoonGame.Gui.Component;
 
-namespace UntitledTycoonGame.Logic;
+namespace UntitledTycoonGame.Gui.Component;
 
 public class ValueBar : BaseComponent {
 	//a value bar (box) could look like this:
