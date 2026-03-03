@@ -13,6 +13,7 @@
         <Button
             Classes="SmallButton"
             Click="OnBackButtonClick"
+            HotKey="Escape"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom">
             Back

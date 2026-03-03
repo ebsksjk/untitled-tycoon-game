@@ -11,11 +11,15 @@ public partial class MainMenu : UserControl {
     public MainMenu() {
         InitializeComponent();
     }
+
+    private void OnSettingsButtonClick(object? sender, RoutedEventArgs e) {
+        MainWindow.Instance.Content = new SettingsMenu() {
+            DataContext = new SettingsMenuViewModel()
+        };
+    }
     
     private void OnCreditsButtonClick(object? sender, RoutedEventArgs e) {
-        MainWindow.Instance.Content = new CreditsMenu() {
-            DataContext = new CreditsWindowViewModel()
-        };
+        MainWindow.Instance.Content = new CreditsMenu();
     }
     
     private void OnQuitButtonClick(object sender, RoutedEventArgs e) {

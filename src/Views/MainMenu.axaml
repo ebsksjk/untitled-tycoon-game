@@ -24,7 +24,7 @@
             <TextBlock Text="Untitled Tycoon Game"/>
         </Border>
         <Button>Play</Button>
-        <Button>Settings</Button>
+        <Button Click="OnSettingsButtonClick">Settings</Button>
         <Button Click="OnCreditsButtonClick">Credits</Button>
         <Button Click="OnQuitButtonClick">Quit</Button>
     </StackPanel>
