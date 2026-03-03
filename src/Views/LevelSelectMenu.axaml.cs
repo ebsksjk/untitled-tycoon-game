@@ -4,8 +4,8 @@ using UntitledTycoonGame.ViewModels;
 
 namespace UntitledTycoonGame.Views;
 
-public partial class CreditsMenu : UserControl {
-    public CreditsMenu() {
+public partial class LevelSelectMenu : UserControl {
+    public LevelSelectMenu() {
         InitializeComponent();
     }
 

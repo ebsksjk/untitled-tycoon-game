@@ -1,8 +1,5 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using UntitledTycoonGame.ViewModels;
 
 namespace UntitledTycoonGame.Views;
@@ -10,6 +7,12 @@ namespace UntitledTycoonGame.Views;
 public partial class MainMenu : UserControl {
     public MainMenu() {
         InitializeComponent();
+    }
+
+    private void OnPlayButtonClick(object? sender, RoutedEventArgs e) {
+        MainWindow.Instance.Content = new LevelSelectMenu() {
+            DataContext = new LevelSelectMenuViewModel()
+        };
     }
 
     private void OnSettingsButtonClick(object? sender, RoutedEventArgs e) {

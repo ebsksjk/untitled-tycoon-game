@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using Avalonia;
-using Timer = System.Timers.Timer;
+﻿using Avalonia;
 
 namespace UntitledTycoonGame;
 

@@ -11,13 +11,12 @@
         </Border>
         <TextBlock DockPanel.Dock="Top" FontSize="32" HorizontalAlignment="Center" Text="meow"></TextBlock>
         
-        <StackPanel DockPanel.Dock="Bottom" FlowDirection="RightToLeft" Orientation="Horizontal">
-            <Button
-                Classes="SmallButton"
-                Click="OnBackButtonClick"
-                HotKey="Escape"
-                VerticalAlignment="Bottom">
-                Back</Button>
-        </StackPanel>
+        <Button
+            Classes="SmallButton"
+            Click="OnBackButtonClick"
+            HorizontalAlignment="Right"
+            HotKey="Escape"
+            VerticalAlignment="Bottom">
+            Back</Button>
     </DockPanel>
 </UserControl>

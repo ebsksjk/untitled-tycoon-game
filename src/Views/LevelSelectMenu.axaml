@@ -1,0 +1,90 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:UntitledTycoonGame.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="UntitledTycoonGame.Views.LevelSelectMenu"
+             x:DataType="vm:LevelSelectMenuViewModel">
+    
+    <Design.DataContext>
+        <vm:LevelSelectMenuViewModel/>
+    </Design.DataContext>
+    
+    <DockPanel>
+        <Border
+            Classes="Heading"
+            DockPanel.Dock="Top"
+            Margin="8">
+            <TextBlock Text="Save Selection"></TextBlock>
+        </Border>
+        <Border
+            Background="#a414"
+            CornerRadius="5"
+            DockPanel.Dock="Top"
+            Margin="8 0 8 8"
+            Padding="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListBox
+                    Background="Transparent"
+                    Grid.Row="0"
+                    ItemsSource="{Binding Items}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border 
+                                Background="#414"
+                                CornerRadius="8"
+                                Padding="8">
+                                <Panel>
+                                    <DockPanel>
+                                        <TextBlock
+                                            DockPanel.Dock="Top"
+                                            FontSize="24"
+                                            Text="{Binding}"/>
+                                        <TextBlock
+                                            DockPanel.Dock="Top"
+                                            FontSize="12"
+                                            Foreground="Gray"
+                                            Text="Last played on: 1.1.1970"/>
+                                    </DockPanel>
+                                    <StackPanel
+                                        FlowDirection="RightToLeft"
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            FontSize="16"
+                                            Foreground="Green"
+                                            HorizontalAlignment="Right"
+                                            Margin="8 0"
+                                            Text="Funds: 10.000€"
+                                            VerticalAlignment="Center"/>
+                                        <TextBlock
+                                            FontSize="16"
+                                            Foreground="Gray"
+                                            HorizontalAlignment="Right"
+                                            Margin="8 0"
+                                            Text="In-game time: Monday, 2.3.2026"
+                                            VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Panel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button
+                    DockPanel.Dock="Bottom"
+                    Classes="SmallButton"
+                    Click="OnBackButtonClick"
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    Margin="8 8 0 0"
+                    VerticalAlignment="Bottom">
+                    Back
+                </Button>
+            </Grid>
+        </Border>
+    </DockPanel>
+</UserControl>

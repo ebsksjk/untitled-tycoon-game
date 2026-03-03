@@ -27,7 +27,7 @@
         <Border Classes="Heading">
             <TextBlock Text="Untitled Tycoon Game"/>
         </Border>
-        <Button>Play</Button>
+        <Button Click="OnPlayButtonClick">Play</Button>
         <Button Click="OnSettingsButtonClick">Settings</Button>
         <Button Click="OnCreditsButtonClick">Credits</Button>
         <Button Click="OnQuitButtonClick">Quit</Button>
