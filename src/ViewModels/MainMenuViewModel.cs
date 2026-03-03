@@ -1,5 +1,5 @@
 ﻿namespace UntitledTycoonGame.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase {
+public partial class MainMenuViewModel : ViewModelBase {
     public string Greeting { get; } = "Welcome to Avalonia!";
 }

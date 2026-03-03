@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="UntitledTycoonGame.Views.CreditsMenu">
+    
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Classes="Heading">
+            <TextBlock Text="Credits"/>
+        </Border>
+        <TextBlock DockPanel.Dock="Top" FontSize="16" HorizontalAlignment="Center" Text="meow"></TextBlock>
+        <Button
+            Classes="SmallButton"
+            Click="OnBackButtonClick"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom">
+            Back
+        </Button>
+    </DockPanel>
+</UserControl>
