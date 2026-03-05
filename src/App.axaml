@@ -13,6 +13,8 @@
         <Color x:Key="ReweColor">#cc071e</Color>
         <Color x:Key="ReweColorHighlight">#f84358</Color>
         <Color x:Key="ReweColorTranslucent">#90cc071e</Color>
+        <Color x:Key="UIColor">#222222</Color>
+        <Color x:Key="UIColorTranslucent">#55222222</Color>
         <FontFamily x:Key="ReweFont">avares://UntitledTycoonGame/src/Assets/Fonts#Unit Rounded OT</FontFamily>
     </Application.Resources>
   

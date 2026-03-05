@@ -22,7 +22,7 @@
             <TextBlock Classes="h1" Text="Save Selection"></TextBlock>
         </Border>
         <Border
-            Background="#5222"
+            Background="{StaticResource UIColorTranslucent}"
             CornerRadius="5"
             DockPanel.Dock="Top"
             Margin="8 0 8 8"
@@ -39,7 +39,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border 
-                                Background="#222"
+                                Background="{StaticResource UIColor}"
                                 CornerRadius="8"
                                 Margin="-12 -8"
                                 Padding="8">
