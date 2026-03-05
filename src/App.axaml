@@ -8,24 +8,31 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
+             
+    <Application.Resources>
+        <Color x:Key="ReweColor">#cc071e</Color>
+        <Color x:Key="ReweColorHighlight">#f84358</Color>
+        <Color x:Key="ReweColorTranslucent">#90cc071e</Color>
+        <FontFamily x:Key="ReweFont">avares://UntitledTycoonGame/src/Assets/Fonts#Unit Rounded OT</FontFamily>
+    </Application.Resources>
   
     <Application.Styles>
         <FluentTheme/>
         
-        <Style Selector="Border.Heading">
-            <Setter Property="Background" Value="#a414"/>
+        <Style Selector="Window">
+            <Setter Property="FontFamily" Value="ReweFont"/>
+        </Style>
+        
+        <Style Selector="Border">
+            <Setter Property="Background" Value="{StaticResource ReweColorTranslucent}"/>
             <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Margin" Value="8 8 8 32"/>
-            
-            <Style Selector="^ TextBlock">
-                <Setter Property="FontSize" Value="64"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-            </Style>
+            <Setter Property="Margin" Value="8"/>
         </Style>
         
         <Style Selector="Button">
-            <Setter Property="Background" Value="#515"/>
+            <Setter Property="Background" Value="{StaticResource ReweColor}"/>
             <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontFamily" Value="{StaticResource ReweFont}"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="8"/>
             
@@ -35,8 +42,18 @@
             </Style>
             
             <Style Selector="^:pointerover /template/ ContentPresenter">
-                <Setter Property="Background" Value="#626"/>
+                <Setter Property="Background" Value="{StaticResource ReweColorHighlight}"/>
             </Style>
         </Style>
+        
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource ReweFont}"/>
+            
+            <Style Selector="^.h1">
+                <Setter Property="FontSize" Value="64"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+        </Style>
+        
     </Application.Styles>
 </Application>

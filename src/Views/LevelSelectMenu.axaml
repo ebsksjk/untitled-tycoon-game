@@ -7,19 +7,22 @@
              x:Class="UntitledTycoonGame.Views.LevelSelectMenu"
              x:DataType="vm:LevelSelectMenuViewModel">
     
+    <UserControl.Background>
+        <ImageBrush Source="/src/Assets/Textures/main_menu_sub.png" Stretch="UniformToFill"/>
+    </UserControl.Background>
+    
     <Design.DataContext>
         <vm:LevelSelectMenuViewModel/>
     </Design.DataContext>
     
     <DockPanel>
         <Border
-            Classes="Heading"
             DockPanel.Dock="Top"
             Margin="8">
-            <TextBlock Text="Save Selection"></TextBlock>
+            <TextBlock Classes="h1" Text="Save Selection"></TextBlock>
         </Border>
         <Border
-            Background="#a414"
+            Background="#5222"
             CornerRadius="5"
             DockPanel.Dock="Top"
             Margin="8 0 8 8"
@@ -36,8 +39,9 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border 
-                                Background="#414"
+                                Background="#222"
                                 CornerRadius="8"
+                                Margin="-12 -8"
                                 Padding="8">
                                 <Panel>
                                     <DockPanel>
