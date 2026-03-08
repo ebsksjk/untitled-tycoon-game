@@ -1,0 +1,68 @@
+@startuml untitled-tycoon-game
+class Product {
+    .. Static instances ..
+    +APPLE: Product
+    +BREAD: Product
+    ...
+    ..
+    +Name: string
+    +BuyPrice: decimal
+    +BatchSize: uint
+    +ShelfLife: TimeSpan
+    --
+    -Product()
+}
+class ProductStack {
+    +Type: Product
+    +Count: uint
+    +ExpiryDate: DateTime
+}
+ProductStack --> Product
+
+abstract class Actor {
+    #Market: Market
+    +Act(): void
+}
+
+class Customer {
+    +ShoppingList: List<Product>
+    +ShoppingCart: List<ProductStack>
+    +Mood: double
+    +Tick(): void
+}
+Customer --|> Actor
+Customer --> Product
+Customer --> ProductStack
+
+class Checkout {
+    -customers: Queue<Customer>
+}
+Checkout --|> Actor
+
+enum EmployeeTask  {
+    OperateCheckout
+    OperateSelfCheckout
+}
+
+class Employee {
+    +CheckoutEfficiency: uint
+    -checkout: Checkout?
+    +Tick(): void
+}
+Employee --|> Actor
+Employee --> EmployeeTask
+
+class Market {
+    +Balance: decimal
+    +Checkouts: List<Checkout>
+    +Employees: List<Employee>
+    +Rating: double
+    +Storage: List<ProductStack>
+}
+
+class Level {
+    +Market: Market
+    +Time: DateTime
+}
+Level --> Market
+@enduml
