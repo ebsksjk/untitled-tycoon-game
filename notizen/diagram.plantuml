@@ -1,23 +1,15 @@
 @startuml untitled-tycoon-game
-class Product {
-    .. Static instances ..
-    +APPLE: Product
-    +BREAD: Product
-    ...
-    ..
+struct ProductType {
     +Name: string
     +BuyPrice: decimal
-    +BatchSize: uint
     +ShelfLife: TimeSpan
-    --
-    -Product()
+    +StackSize: uint
 }
-class ProductStack {
-    +Type: Product
-    +Count: uint
+struct Product {
+    +Type: ProductType
     +ExpiryDate: DateTime
 }
-ProductStack --> Product
+Product -left-> ProductType
 
 abstract class Actor {
     #Market: Market
@@ -26,43 +18,71 @@ abstract class Actor {
 
 class Customer {
     +ShoppingList: List<Product>
-    +ShoppingCart: List<ProductStack>
+    +ShoppingCart: List<Product>
     +Mood: double
-    +Tick(): void
 }
-Customer --|> Actor
-Customer --> Product
-Customer --> ProductStack
+Customer -up-|> Actor
+
+struct ShelfCell {
+    +Height: uint
+    +Products: Queue<Product>
+    +ProductType: ProductType
+    +Width: uint
+}
+
+class Shelf {
+    -cells: List<ShelfCell>
+    +Height: uint
+    +Width: uint
+    +HasProduct(type: ProductType): bool
+    +NeedsRestocking(): bool
+    +Restock(): void
+    +TakeProducts(type: ProductType, count: uint): Queue<Product>
+}
+Shelf -up-|> Actor
+Shelf -down-> ShelfCell
 
 class Checkout {
-    -customers: Queue<Customer>
+    -currentCustomer: Customer
+    +Customers: Queue<Customer>
+    +Open: bool
 }
-Checkout --|> Actor
+Checkout -up-|> Actor
 
 enum EmployeeTask  {
+    Idle
     OperateCheckout
     OperateSelfCheckout
+    Restock
 }
 
 class Employee {
-    +CheckoutEfficiency: uint
     -checkout: Checkout?
-    +Tick(): void
+    +CheckoutEfficiency: uint
+    +Task: EmployeeTask
 }
-Employee --|> Actor
+Employee -up-|> Actor
 Employee --> EmployeeTask
 
 class Market {
+    +Actors: List<Actor>
     +Balance: decimal
-    +Checkouts: List<Checkout>
-    +Employees: List<Employee>
+    +Products: List<ProductType>
     +Rating: double
-    +Storage: List<ProductStack>
+    +Storage: Dictionary<ProductType, Queue<Product>>
+}
+Market --> Actor
+Market -left-> Product
+
+struct GameRules {
+    
 }
 
 class Level {
     +Market: Market
+    +Rules: GameRules
     +Time: DateTime
 }
+Level -right-> GameRules
 Level --> Market
 @enduml
