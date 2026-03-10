@@ -16,12 +16,19 @@ abstract class Actor {
     +Act(): void
 }
 
+struct ShoppingListItem {
+    +Count: uint
+    +IsImportant: bool
+    +Type: ProductType
+}
+
 class Customer {
-    +ShoppingList: List<Product>
+    +ShoppingList: List<ShoppingListItem>
     +ShoppingCart: List<Product>
     +Mood: double
 }
 Customer -up-|> Actor
+Customer -down-> ShoppingListItem
 
 struct ShelfCell {
     +Height: uint
@@ -64,25 +71,27 @@ class Employee {
 Employee -up-|> Actor
 Employee --> EmployeeTask
 
+struct GameRules {
+    +FoodExpires: bool
+}
+
+class Population {
+    -db: SqliteConnection
+}
+
 class Market {
     +Actors: List<Actor>
     +Balance: decimal
     +Products: List<ProductType>
     +Rating: double
+    +Rules: GameRules
     +Storage: Dictionary<ProductType, Queue<Product>>
+    +Tick(): void
+    +Time: DateTime
 }
 Market --> Actor
 Market -left-> Product
+Market -right-> GameRules
+Market -up-> Population
 
-struct GameRules {
-    
-}
-
-class Level {
-    +Market: Market
-    +Rules: GameRules
-    +Time: DateTime
-}
-Level -right-> GameRules
-Level --> Market
 @enduml
