@@ -12,8 +12,8 @@ struct Product {
 Product -left-> ProductType
 
 abstract class Actor {
-    #Market: Market
     +Act(): void
+    #GetMarket(): Market
 }
 
 struct ShoppingListItem {
@@ -38,7 +38,7 @@ struct ShelfCell {
 }
 
 class Shelf {
-    -cells: List<ShelfCell>
+    +Cells: List<ShelfCell>
     +Height: uint
     +Width: uint
     +HasProduct(type: ProductType): bool
@@ -50,7 +50,7 @@ Shelf -up-|> Actor
 Shelf -down-> ShelfCell
 
 class Checkout {
-    -currentCustomer: Customer
+    +CurrentCustomer: Customer
     +Customers: Queue<Customer>
     +Open: bool
 }
@@ -64,34 +64,39 @@ enum EmployeeTask  {
 }
 
 class Employee {
-    -checkout: Checkout?
+    +Checkout: Checkout?
     +CheckoutEfficiency: uint
     +Task: EmployeeTask
 }
 Employee -up-|> Actor
 Employee --> EmployeeTask
 
-struct GameRules {
-    +FoodExpires: bool
-}
-
-class Population {
-    -db: SqliteConnection
-}
-
 class Market {
     +Actors: List<Actor>
-    +Balance: decimal
+    +Name: string
     +Products: List<ProductType>
-    +Rating: double
-    +Rules: GameRules
     +Storage: Dictionary<ProductType, Queue<Product>>
+    
     +Tick(): void
-    +Time: DateTime
 }
 Market --> Actor
 Market -left-> Product
-Market -right-> GameRules
-Market -up-> Population
 
+struct Savefile {
+    +Balance: decimal
+    +Created
+    +FoodExpires: bool
+    +GameTime: DateTime
+    +Name: string
+    +Rating: double
+}
+Savefile -down-> Market
+
+class Game {
+    +ActiveSavefile: static Savefile?
+    +GetSavefileInfos(): static List<Savefile>
+    +Load(name: string): void
+    +Save(): void
+}
+Game -down-> Savefile
 @enduml
