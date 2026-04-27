@@ -95,8 +95,8 @@ Savefile -down-> Market
 class Game {
     +ActiveSavefile: static Savefile?
     +GetSavefileInfos(): static List<Savefile>
-    +Load(name: string): void
-    +Save(): void
+    +Load(name: string): static void
+    +Save(): static void
 }
 Game -down-> Savefile
 @enduml

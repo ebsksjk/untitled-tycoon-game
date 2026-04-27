@@ -1,0 +1,16 @@
+@startuml activity
+start
+-Load savefile
+while (Is game loop active) is (yes)
+    if (GameTime before 23:00) then (yes)
+        -Advance in game time
+        -Evaluate customer spawn chance
+        -Evaluate random event spawn chance
+    else if (NextDayEvent triggered)
+        -Set GameTime to 7:00
+    endif
+        -Tick all actors
+endwhile
+-Save savefile
+-Return to main menu
+@enduml
