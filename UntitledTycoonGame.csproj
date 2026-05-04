@@ -12,7 +12,6 @@
     <ItemGroup>
         <Folder Include="src\Models\"/>
         <AvaloniaResource Include="src\Assets\**"/>
-        <Folder Include="src\Views\LevelSelect\" />
     </ItemGroup>
 
     <ItemGroup>

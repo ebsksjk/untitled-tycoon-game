@@ -7,11 +7,8 @@ namespace UntitledTycoonGame.Views;
 public partial class LevelSelectMenu : UserControl {
     public LevelSelectMenu() {
         InitializeComponent();
+        DataContext = new LevelSelectMenuViewModel();
     }
 
-    private void OnBackButtonClick(object? sender, RoutedEventArgs e) {
-        MainWindow.Instance.Content = new MainMenu() {
-            DataContext = new MainMenuViewModel()
-        };
-    }
+    private void OnBackButtonClick(object? sender, RoutedEventArgs e) => MainWindow.ShowMainMenu();
 }

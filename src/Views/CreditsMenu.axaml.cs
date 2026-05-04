@@ -9,9 +9,5 @@ public partial class CreditsMenu : UserControl {
         InitializeComponent();
     }
 
-    private void OnBackButtonClick(object? sender, RoutedEventArgs e) {
-        MainWindow.Instance.Content = new MainMenu() {
-            DataContext = new MainMenuViewModel()
-        };
-    }
+    private void OnBackButtonClick(object? sender, RoutedEventArgs e) => MainWindow.ShowMainMenu();
 }
