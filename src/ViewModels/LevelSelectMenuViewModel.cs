@@ -4,5 +4,5 @@ using UntitledTycoonGame.Game;
 namespace UntitledTycoonGame.ViewModels;
 
 public class LevelSelectMenuViewModel {
-    public ObservableCollection<Save.Level> Items { get; set; } = new(SaveManager.GetSaveLevels());
+    public ObservableCollection<Save.Metadata> SaveMetadata { get; set; } = new(SaveManager.GetSaveMetadata());
 }

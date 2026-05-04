@@ -5,16 +5,16 @@ namespace UntitledTycoonGame.Game;
 public static class SaveManager {
     public static Save? ActiveSavefile { get; set; }
 
-    public static IEnumerable<Save.Level> GetSaveLevels() {
+    public static IEnumerable<Save.Metadata> GetSaveMetadata() {
         if (Directory.Exists("./saves")) {
             return Directory.GetDirectories("./saves")
-                .Where(x => File.Exists($"{x}/level.json"))
+                .Where(x => File.Exists($"{x}/metadata.json"))
                 .Select(x => {
                     try {
-                        return JsonSerializer.Deserialize<Save.Level>(File.ReadAllText($"{x}/level.json"));
+                        return JsonSerializer.Deserialize<Save.Metadata>(File.ReadAllText($"{x}/metadata.json"));
                     }
                     catch (JsonException e) {
-                        return Save.Level.INVALID;
+                        return Save.Metadata.INVALID;
                     }
                 });
         }

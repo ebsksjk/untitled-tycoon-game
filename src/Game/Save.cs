@@ -2,8 +2,8 @@ namespace UntitledTycoonGame.Game;
 
 public struct Save {
 
-    public struct Level {
-        public static readonly Level INVALID = new Level() { Name = "INVALID SAVEFILE" };
+    public struct Metadata {
+        public static readonly Metadata INVALID = new Metadata() { Name = "INVALID SAVEFILE" };
         
         public decimal Balance { get; set; }
         public DateTime CreatedTime  { get; set; }
