@@ -10,5 +10,6 @@ public partial class LevelSelectMenu : UserControl {
         DataContext = new LevelSelectMenuViewModel();
     }
 
+    private void OnAddButtonClick(object? sender, RoutedEventArgs e) => MainWindow.ShowLevelCreateMenu();
     private void OnBackButtonClick(object? sender, RoutedEventArgs e) => MainWindow.ShowMainMenu();
 }

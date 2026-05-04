@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using UntitledTycoonGame.Game;
 using UntitledTycoonGame.ViewModels;
 using UntitledTycoonGame.Views;
 
@@ -10,6 +11,7 @@ public partial class MainWindow : Window {
     };
 
     private readonly MainMenu mainMenu;
+    private readonly LevelCreateMenu levelCreateMenu;
     private readonly LevelSelectMenu levelSelectMenu;
     private readonly SettingsMenu settingsMenu;
     private readonly CreditsMenu creditsMenu;
@@ -18,6 +20,7 @@ public partial class MainWindow : Window {
         InitializeComponent();
         
         mainMenu = new();
+        levelCreateMenu = new();
         levelSelectMenu = new();
         settingsMenu = new();
         creditsMenu = new();
@@ -26,7 +29,13 @@ public partial class MainWindow : Window {
     }
     
     public static void ShowMainMenu() => Instance.Content = Instance.mainMenu;
-    public static void ShowLevelSelectMenu() => Instance.Content = Instance.levelSelectMenu;
+    public static void ShowLevelCreateMenu() => Instance.Content = Instance.levelCreateMenu;
     public static void ShowSettingsMenu() =>  Instance.Content = Instance.settingsMenu;
     public static void ShowCreditsMenu() =>  Instance.Content = Instance.creditsMenu;
+    
+    
+    public static void ShowLevelSelectMenu() {
+        ((LevelSelectMenuViewModel)Instance.levelSelectMenu.DataContext).SaveMetadata = new(SaveManager.GetSaveMetadata());
+        Instance.Content = Instance.levelSelectMenu;
+    }
 }

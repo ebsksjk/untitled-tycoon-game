@@ -21,6 +21,13 @@ public static class SaveManager {
         return [];
     }
 
+    public static void Create(string name, Save.Metadata metadata) {
+        Directory.CreateDirectory($"./saves/{name}/");
+        using (FileStream fs = File.Create($"./saves/{name}/metadata.json")) {
+            JsonSerializer.Serialize(fs, metadata);
+        }
+    }
+
     public static void ReadSavefile(string directory) {
         
     }

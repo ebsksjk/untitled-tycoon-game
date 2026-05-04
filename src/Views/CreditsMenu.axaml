@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:UntitledTycoonGame.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="UntitledTycoonGame.Views.CreditsMenu">
     
@@ -10,9 +11,7 @@
     </UserControl.Background>
     
     <DockPanel>
-        <Border DockPanel.Dock="Top">
-            <TextBlock Classes="h1" Text="Credits"/>
-        </Border>
+        <controls:RedTitleControl DockPanel.Dock="Top" Title="Credits"/>
         <TextBlock DockPanel.Dock="Top" FontSize="16" HorizontalAlignment="Center" Text="meow"></TextBlock>
         <Button
             Classes="SmallButton"

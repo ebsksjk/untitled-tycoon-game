@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:UntitledTycoonGame.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="UntitledTycoonGame.Views.LevelCreateMenu"
+             x:DataType="vm:LevelCreateMenuViewModel">
+
+    <UserControl.Background>
+        <ImageBrush Source="/src/Assets/Textures/main_menu_sub.png" Stretch="UniformToFill"/>
+    </UserControl.Background>
+    
+    <Design.DataContext>
+        <vm:LevelCreateMenuViewModel/>
+    </Design.DataContext>
+    
+    <DockPanel>
+        <Border Background="{StaticResource UIColorTranslucent}" CornerRadius="5" DockPanel.Dock="Top" Margin="8" Padding="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Row="0" FontSize="24" Text="Name:"/>
+                <TextBlock Grid.Row="1" FontSize="24" Text="Food expires:"/>
+                
+                <TextBox FontSize="20" Grid.Column="1" Grid.Row="0" Margin="0 0 0 16" Text="{Binding SaveName}"/>
+                <CheckBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"/>
+                
+                <StackPanel Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Button Classes="SmallButton" Click="OnCreateButtonClick" Margin="8 8 0 0">
+                        Create
+                    </Button>
+                    <Button Classes="SmallButton" Click="OnCancelButtonClick" Margin="8 8 0 0">
+                        Cancel
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DockPanel>
+    
+</UserControl>

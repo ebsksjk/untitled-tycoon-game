@@ -16,10 +16,7 @@
     </Design.DataContext>
     
     <DockPanel>
-        <Border DockPanel.Dock="Top" Margin="8">
-            <TextBlock Classes="h1" Text="Save Selection"></TextBlock>
-        </Border>
-        <Border Background="{StaticResource UIColorTranslucent}" CornerRadius="5" DockPanel.Dock="Top" Margin="8 0 8 8" Padding="8">
+        <Border Background="{StaticResource UIColorTranslucent}" CornerRadius="5" DockPanel.Dock="Top" Margin="8" Padding="8">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -68,9 +65,23 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button DockPanel.Dock="Bottom" Classes="SmallButton" Click="OnBackButtonClick" Grid.Row="1" HorizontalAlignment="Right" Margin="8 8 0 0" VerticalAlignment="Bottom">
-                    Back
-                </Button>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button IsEnabled="False" Classes="SmallButton" Click="OnBackButtonClick" Margin="8 8 0 0">
+                        Play
+                    </Button>
+                    <Button Classes="SmallButton" Click="OnAddButtonClick" Margin="8 8 0 0">
+                        Add
+                    </Button>
+                    <Button IsEnabled="False" Classes="SmallButton" Click="OnBackButtonClick" Margin="8 8 0 0">
+                        Open Folder
+                    </Button>
+                    <Button IsEnabled="False" Classes="SmallButton" Click="OnBackButtonClick" Margin="8 8 0 0">
+                        Delete
+                    </Button>
+                    <Button Classes="SmallButton" Click="OnBackButtonClick" Margin="8 8 0 0">
+                        Back
+                    </Button>
+                </StackPanel>
             </Grid>
         </Border>
     </DockPanel>
