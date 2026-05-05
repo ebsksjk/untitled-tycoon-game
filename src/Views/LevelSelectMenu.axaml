@@ -22,19 +22,19 @@
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ListBox Background="Transparent" Grid.Row="0" ItemsSource="{Binding SaveMetadata}">
+                <ListBox Background="Transparent" Grid.Row="0" ItemsSource="{Binding GameDataFiles}" x:Name="GameDataList">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border Background="{StaticResource UIColor}" CornerRadius="8" Margin="-12 -8" Padding="8">
                                 <Panel>
                                     <DockPanel>
-                                        <TextBlock DockPanel.Dock="Top" FontSize="24" Text="{Binding Name}"/>
+                                        <TextBlock DockPanel.Dock="Top" FontSize="24" Text="{Binding GameData.Name}"/>
                                         <TextBlock DockPanel.Dock="Top" FontSize="12" Foreground="Gray">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="Last played on: {0}.{1}.{2}">
-                                                    <Binding Path="LastPlayedTime.Day"/>
-                                                    <Binding Path="LastPlayedTime.Month"/>
-                                                    <Binding Path="LastPlayedTime.Year"/>
+                                                    <Binding Path="GameData.LastPlayedTime.Day"/>
+                                                    <Binding Path="GameData.LastPlayedTime.Month"/>
+                                                    <Binding Path="GameData.LastPlayedTime.Year"/>
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
@@ -43,19 +43,19 @@
                                         <TextBlock FontSize="16" Foreground="Green" HorizontalAlignment="Right" Margin="8 0" VerticalAlignment="Center">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="Funds: {0:n2}€">
-                                                    <Binding Path="Balance"/>
+                                                    <Binding Path="GameData.Balance"/>
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
                                         <TextBlock FontSize="16" Foreground="Gray" HorizontalAlignment="Right" Margin="8 0" VerticalAlignment="Center">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="In-game time: {0}, {1}.{2}.{3} {4}:{5}">
-                                                    <Binding Path="GameTime.DayOfWeek"/>
-                                                    <Binding Path="GameTime.Day"/>
-                                                    <Binding Path="GameTime.Month"/>
-                                                    <Binding Path="GameTime.Year"/>
-                                                    <Binding Path="GameTime.Hour"/>
-                                                    <Binding Path="GameTime.Minute"/>
+                                                    <Binding Path="GameData.GameTime.DayOfWeek"/>
+                                                    <Binding Path="GameData.GameTime.Day"/>
+                                                    <Binding Path="GameData.GameTime.Month"/>
+                                                    <Binding Path="GameData.GameTime.Year"/>
+                                                    <Binding Path="GameData.GameTime.Hour"/>
+                                                    <Binding Path="GameData.GameTime.Minute"/>
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
@@ -75,7 +75,7 @@
                     <Button IsEnabled="False" Classes="SmallButton" Click="OnBackButtonClick" Margin="8 8 0 0">
                         Open Folder
                     </Button>
-                    <Button IsEnabled="False" Classes="SmallButton" Click="OnBackButtonClick" Margin="8 8 0 0">
+                    <Button Classes="SmallButton" Click="OnDeleteButtonClick" Margin="8 8 0 0">
                         Delete
                     </Button>
                     <Button Classes="SmallButton" Click="OnBackButtonClick" Margin="8 8 0 0">

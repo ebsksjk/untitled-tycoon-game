@@ -1,6 +1,6 @@
 namespace UntitledTycoonGame.ViewModels;
 
 public class LevelCreateMenuViewModel {
-    public string? SaveName { get; set; }
+    public string? Name { get; set; }
     public bool FoodExpires { get; set; }
 }
