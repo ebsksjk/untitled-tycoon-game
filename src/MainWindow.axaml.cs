@@ -35,7 +35,12 @@ public partial class MainWindow : Window {
     
     
     public static void ShowLevelSelectMenu() {
-        ((LevelSelectMenuViewModel)Instance.levelSelectMenu.DataContext).SaveMetadata = new(SaveManager.GetSaveMetadata());
+        if (Instance.levelSelectMenu.DataContext is LevelSelectMenuViewModel model) {
+            model.GameDataFiles.Clear();
+            foreach (var data in SaveManager.GetGameDataFiles()) {
+                model.GameDataFiles.Add(data);
+            }
+        }
         Instance.Content = Instance.levelSelectMenu;
     }
 }

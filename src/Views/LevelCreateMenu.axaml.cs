@@ -14,9 +14,9 @@ public partial class LevelCreateMenu : UserControl {
     }
 
     private void OnCreateButtonClick(object sender, RoutedEventArgs e) {
-        SaveManager.Create(((LevelCreateMenuViewModel)DataContext).SaveName, new Save.Metadata() {
-            FoodExpires = ((LevelCreateMenuViewModel)DataContext).FoodExpires
-        });
+        if (DataContext is LevelCreateMenuViewModel model) {
+            SaveManager.Create(model.Name, model.FoodExpires);
+        }
         MainWindow.ShowLevelSelectMenu();
     }
     
