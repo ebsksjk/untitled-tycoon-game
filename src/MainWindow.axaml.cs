@@ -36,9 +36,9 @@ public partial class MainWindow : Window {
     
     public static void ShowLevelSelectMenu() {
         if (Instance.levelSelectMenu.DataContext is LevelSelectMenuViewModel model) {
-            model.GameDataFiles.Clear();
-            foreach (var data in SaveManager.GetGameDataFiles()) {
-                model.GameDataFiles.Add(data);
+            model.Metadata.Clear();
+            foreach (var data in GameDataManager.GetAllMetadata()) {
+                model.Metadata.Add(data);
             }
         }
         Instance.Content = Instance.levelSelectMenu;

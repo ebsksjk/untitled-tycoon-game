@@ -12,8 +12,8 @@ namespace UntitledTycoonGame.src.Game.Simulation
         public Citizen[] citizens;
 
 
-        private string jobPath = "src\\Assets\\Data\\jobs.json";
-        private string namePath = "src\\Assets\\Data\\names.json";
+        private string jobPath = "src/Assets/Data/jobs.json";
+        private string namePath = "src/Assets/Data/names.json";
 
         private string outputFile = "city.txt";
 

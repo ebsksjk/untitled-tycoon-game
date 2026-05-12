@@ -17,10 +17,10 @@ public partial class LevelSelectMenu : UserControl {
 
     private void OnDeleteButtonClick(object? sender, RoutedEventArgs e) {
         if (DataContext is LevelSelectMenuViewModel model && GameDataList.SelectedIndex >= 0) {
-            model.GameDataFiles[GameDataList.SelectedIndex].File.Delete();
-            model.GameDataFiles.Clear();
-            foreach (var data in SaveManager.GetGameDataFiles()) {
-                model.GameDataFiles.Add(data);
+            File.Delete(model.Metadata[GameDataList.SelectedIndex].FilePath);
+            model.Metadata.Clear();
+            foreach (var data in GameDataManager.GetAllMetadata()) {
+                model.Metadata.Add(data);
             }
         }
     }

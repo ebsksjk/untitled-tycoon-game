@@ -4,5 +4,5 @@ using UntitledTycoonGame.Game;
 namespace UntitledTycoonGame.ViewModels;
 
 public class LevelSelectMenuViewModel {
-    public ObservableCollection<GameDataFile> GameDataFiles { get; set; } = new();
+    public ObservableCollection<GameMetadata> Metadata { get; set; } = new();
 }
